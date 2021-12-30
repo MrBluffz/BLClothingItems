@@ -7,12 +7,12 @@ function RegisterClothes()
 		ESX.RegisterUsableItem(Config[i].itemName, function(source)
 			local xPlayer = ESX.GetPlayerFromId(source)
 			xPlayer.removeInventoryItem(Config[i].itemName, 1)
-			TriggerClientEvent('BLClothingItems', source, Config[i].set, Config[i].label)
+			TriggerClientEvent('BLClothingItems', source, i, Config[i].label)
 		end)
 	end
 end
 
 Citizen.CreateThread(function()
 	RegisterClothes()
-	Print('Items are loaded! Thank you for using BL Clothing Items')
+	print('Items are loaded! Thank you for using BL Clothing Items')
 end)
