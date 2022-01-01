@@ -26,7 +26,7 @@ lua54 'yes'
 
 author 'Mr Bluffz'
 description 'Clothing Items'
-version '1.0.0'
+version '1.1.0'
 
 client_scripts {'Config.lua', '@es_extended/locale.lua', 'Locales/*.lua', 'Client.lua'}
 
