@@ -30,6 +30,6 @@ version '1.0.0'
 
 client_scripts {'Config.lua', '@es_extended/locale.lua', 'Locales/*.lua', 'Client.lua'}
 
-server_scripts {'@es_extended/locale.lua', 'Locales/*.lua', 'Config.lua', 'Server.lua'}
+server_scripts {'@mysql-async/lib/MySQL.lua', '@es_extended/locale.lua', 'Locales/*.lua', 'Config.lua', 'Server.lua'}
 
 escrow_ignore {'Locales/*.lua', 'Config.lua', 'Server.lua', 'Client.lua'}
