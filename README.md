@@ -1,7 +1,11 @@
 # BLClothingItems
 Simple Script for doing outfits as items!
 
-**UNTESTED BUT SHOULD WORK. OPEN A TICKET ON MY DISCORD IF YOU FIND A BUG OR HAVE A REQUEST**
+**Tested, working**
+
+Update: Added a command /changeback that will allow you to go back to your last used clothing, and return the item to your inventory.
+
+e.x: apply outfit item, use command /changeback, puts back your standard saved clothing, and gives you item back.
 
 
 You will need to know what number each item is for the clothing. You can either just guess until you find the correct number, or use something like Vmenu or other clothing selector scripts to find the number associated with each piece.
