@@ -15,30 +15,18 @@ function RegisterClothes()
 end
 
 Citizen.CreateThread(function()
- while not ESX do Wait(0) end
- RegisterClothes()
+	while not ESX do Wait(0) end
+	RegisterClothes()
 	print('Items are loaded! Thank you for using BL Clothing Items')
- readClothes()
+	readClothes()
 end)
 
-readClothes = function()
-
-	MySQL.Async.fetchAll('SELECT * FROM users', {}, function(result)
-		for k,v in pairs(result) do 
-			if v.clothing then
-				ClothesList[v.identifier] = v.clothing
-			end
-		end
-	end)
-
-end
+readClothes = function() MySQL.Async.fetchAll('SELECT * FROM users', {}, function(result) for k, v in pairs(result) do if v.clothing then ClothesList[v.identifier] = v.clothing end end end) end
 
 updateClothes = function(outfit, src)
 	local xPlayer = ESX.GetPlayerFromId(src)
 	local ident = xPlayer.getIdentifier()
-	if ClothesList[ident] then
-		xPlayer.addInventoryItem(ClothesList[ident], 1)
-	end
+	if ClothesList[ident] then xPlayer.addInventoryItem(ClothesList[ident], 1) end
 	ClothesList[ident] = outfit
 	MySQL.Async.execute('UPDATE users SET clothes = @clothes WHERE identifier = @identifier', {
 		['clothes'] = outfit,
@@ -56,6 +44,22 @@ RegisterCommand('deleteoutfit', function(source, args)
 	local ident = xPlayer.getIdentifier()
 	if ClothesList[ident] then
 		ClothesList[ident] = nil
+		MySQL.Async.execute('UPDATE users SET clothes = NULL WHERE identifier = @identifier', {
+			['identifier'] = ident,
+		})
+	end
+end)
+
+RegisterNetEvent('BLClothingItems:reset')
+AddEventHandler('BLClothingItems:reset', function()
+	local src = source
+	local xPlayer = ESX.GetPlayerFromId(src)
+	local ident = xPlayer.getIdentifier()
+	if ClothesList[ident] then
+  xPlayer.addInventoryItem(ClothesList[ident], 1)
+  Citizen.Wait(100)
+		ClothesList[ident] = nil
+  Citizen.Wait(100)
 		MySQL.Async.execute('UPDATE users SET clothes = NULL WHERE identifier = @identifier', {
 			['identifier'] = ident,
 		})
