@@ -12,12 +12,13 @@
 ─██░░██──────────██░░██─██░░██──██░░░░░░██────██░░░░░░░░░░░░██─██░░░░░░░░░░██─██░░░░░░░░░░██─██░░██─────────██░░██─────────██░░░░░░░░░░░░░░██─
 ─██████──────────██████─██████──██████████────████████████████─██████████████─██████████████─██████─────────██████─────────██████████████████─
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
-]] 
+ 
 
--- ####################################################################################
--- #                                   DISCORD:                                       #
--- #                          https://discord.gg/QPPSBncbZn                           #
--- ####################################################################################
+ ####################################################################################
+ #                                   DISCORD:                                       #
+ #                          https://discord.gg/QPPSBncbZn                           #
+ ####################################################################################
+]]
 
 fx_version 'cerulean'
 game 'gta5'
@@ -28,8 +29,15 @@ author 'Mr Bluffz'
 description 'Clothing Items'
 version '1.1.0'
 
-client_scripts {'Config.lua', '@es_extended/locale.lua', 'Locales/*.lua', 'Client.lua'}
+client_script 'Client.lua'
 
-server_scripts {'@mysql-async/lib/MySQL.lua', '@es_extended/locale.lua', 'Locales/*.lua', 'Config.lua', 'Server.lua'}
+shared_scripts {
+    '@es_extended/locale.lua', 
+    'Locales/*.lua', 
+    'Config.lua', 
+}
 
-escrow_ignore {'Locales/*.lua', 'Config.lua', 'Server.lua', 'Client.lua'}
+server_scripts {
+    '@mysql-async/lib/MySQL.lua', 
+    'Server.lua'
+}

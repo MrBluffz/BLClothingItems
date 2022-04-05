@@ -9,13 +9,13 @@ setupEsx = function()
 end
 
 updateClothing = function()
-	local playerPed = GetPlayerPed(-1)
+	local playerPed = PlayerPedId()
 	ESX.TriggerServerCallback('BLClothingItems:GetClothes', function(outfitname) for i = 1, #Config do if Config[i].itemName == outfitname then for k, v in pairs(Config[i].set) do SetPedComponentVariation(playerPed, v.c1, v.c2, v.c3, 0) end end end end)
 end
 
 RegisterNetEvent('BLClothingItems')
 AddEventHandler('BLClothingItems', function(number, label)
-	local playerPed = GetPlayerPed(-1)
+	local playerPed = PlayerPedId()
 	for k, v in pairs(Config[number].set) do SetPedComponentVariation(playerPed, v.c1, v.c2, v.c3, 0) end
 	ESX.ShowNotification("You've put on " .. label)
 end)
