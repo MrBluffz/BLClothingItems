@@ -1,7 +1,8 @@
 ESX = nil
 
-local ClothesList = {}
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+
+local ClothesList = {}
 
 function RegisterClothes()
 	for i = 1, #Config do
@@ -14,7 +15,7 @@ function RegisterClothes()
 	end
 end
 
-Citizen.CreateThread(function()
+CreateThread(function()
 	while not ESX do Wait(0) end
 	RegisterClothes()
 	print('Items are loaded! Thank you for using BL Clothing Items')
@@ -56,10 +57,10 @@ AddEventHandler('BLClothingItems:reset', function()
 	local xPlayer = ESX.GetPlayerFromId(src)
 	local ident = xPlayer.getIdentifier()
 	if ClothesList[ident] then
-  xPlayer.addInventoryItem(ClothesList[ident], 1)
-  Citizen.Wait(100)
+  		xPlayer.addInventoryItem(ClothesList[ident], 1)
+  		Wait(100)
 		ClothesList[ident] = nil
-  Citizen.Wait(100)
+  		Wait(100)
 		MySQL.Async.execute('UPDATE users SET clothes = NULL WHERE identifier = @identifier', {
 			['identifier'] = ident,
 		})
