@@ -21,7 +21,7 @@ Citizen.CreateThread(function()
 	readClothes()
 end)
 
-readClothes = function() MySQL.Async.fetchAll('SELECT * FROM users', {}, function(result) for k, v in pairs(result) do if v.clothing then ClothesList[v.identifier] = v.clothing end end end) end
+readClothes = function() MySQL.Async.fetchAll('SELECT * FROM users', {}, function(result) for k, v in pairs(result) do if v.clothes then ClothesList[v.identifier] = v.clothes end end end) end
 
 updateClothes = function(outfit, src)
 	local xPlayer = ESX.GetPlayerFromId(src)
